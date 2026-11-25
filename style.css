@@ -6,7 +6,7 @@
 
 body {
   min-height: 200vh;
-  padding-top: 400px;
+  padding-top: 200px;
   background-color: darkorange;
   background-size: cover;
   background-repeat: no-repeat;
@@ -138,6 +138,11 @@ nav {
   display: none;
 }
 
+/* Când dai click pe Login, containerul se lipește exact la 120px (imediat sub navbar) */
+#login-toggle:checked ~ .container {
+  top: 120px;
+  margin-top: -240px;
+}
 /* --- ADAPTARE PENTRU MOBIL PORTRAIT (Să nu se suprapună Logo-ul peste butoane) --- */
 @media (max-width: 700px) {
   nav {
@@ -175,12 +180,6 @@ nav {
   -------------------------------------------------------------------------------
   Cream folosind display Flex, containerul principal in case se vor afla pozele */
 
- /* .inghetat {
-    margin-top: 150px;
-    position: fixed;
-    
-    width: 100%;
- } */
 /* Adăugăm transition pe .container pentru mișcare lină */
 .container {
   display: flex;
