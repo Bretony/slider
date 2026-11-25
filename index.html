@@ -9,21 +9,36 @@
 
 
 <body>
- <!-- 1. Checkbox-ul invizibil care ține minte starea de click -->
+  <!-- 1. Checkbox-ul invizibil care ține minte starea de click pe Login -->
     <input type="checkbox" id="login-toggle">
 
+    <!-- 2. Meniul lateral (Sidebar) care se deschide la click pe Hamburger -->
+    <ul class="sidebar">
+        <li class="close-button" onclick="hideSidebar()">
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a>
+        </li>
+        <li><a href="#">Info</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Forum</a></li>
+        <!-- <li><label for="login-toggle" onclick="hideSidebar()">Login</label></li> -->
+    </ul>
+
+    <!-- 3. Bara principală de navigare (Desktop + Mobil pe 2 rânduri) -->
     <div class="navbar-wrapper">
         <nav>
             <ul>
                 <li class="logo">Coding2go</li>
                 <div class="header">
-                    <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://w3.org" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
-                    <li class="hideOnMobile"><a href="#">Blog</a></li>
+                    <li class="menu-button" onclick="showSidebar()">
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a>
+                    </li>
+                    <!-- <li class="hideOnMobile"><a href="#">Info</a></li>
                     <li class="hideOnMobile"><a href="#">Products</a></li>
                     <li class="hideOnMobile"><a href="#">About</a></li>
-                    <li class="hideOnMobile"><a href="#">Forum</a></li>
+                    <li class="hideOnMobile"><a href="#">Forum</a></li> -->
                     
-                    <!-- 2. Butonul Login devine <label> -->
+                    <!-- Butonul Login rămâne <label> ca să funcționeze animația containerului -->
                     <li class="hideOnMobile particular">
                         <label for="login-toggle">Login</label>
                     </li>
@@ -31,43 +46,6 @@
             </ul>
         </nav>
     </div>
-
-    <!-- <div class="inghetat">
-        Heelooo! Welcome!
-    </div>
-<div class="navbar-wrapper">
-    <nav> -->
-        <!-- <div class="nbar">
-        <ul class="sidebar">
-            
-            <li class="close-button" onclick=hideSidebar()><a href="#"><i><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></i></a></li>
-            
-            <li class="sageata_sus"><a href="#">Blog</a></li>
-            <li class="sageata_sus"><a href="#">Products</a></li>
-            <li class="sageata_sus"><a href="#">About</a></li>
-            <li class="sageata_sus"><a href="#">Forum</a></li>
-            <li class="sageata_sus"><a href="#">Login</a></li>
-        </ul>
-    </div>
-        <ul class="side-mobil"> -->
-            <!-- <ul>
-            <li class="logo">Coding2go</li>
-            <div class="header">
-            <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
-            <li class="hideOnMobile"><a href="#">Blog</a></li>
-            <li class="hideOnMobile"><a href="#">Products</a></li>
-            <li class="hideOnMobile"><a href="#">About</a></li>
-            <li class="hideOnMobile"><a href="#">Forum</a></li> -->
-            <!-- <li class="hideOnMobile"><a href="#">Login</a></li> -->
-            <!-- <li class="hideOnMobile particular"><a href="#">Login</a></li>
-            </div>
-        </ul>
-    </nav>
-    </div>
-
-    <div class="inghetat">
-    Heelooo! Welcome!
-    </div> -->
       <div class="container">
     <div class="item1">poza_1</div>
     <div class="item2">poza_2</div>
