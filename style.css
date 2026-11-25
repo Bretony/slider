@@ -5,10 +5,8 @@
 }
 
 body {
-   min-height: 200vh;
-  /* Împingem conținutul mai jos la pornire (ex: 400px), 
-     ca să aibă distanță pe care să urce la scroll până la 220px */
-  padding-top: 400px; /* Spațiu ca să nu intre conținutul sub navbar */
+  min-height: 200vh;
+  padding-top: 400px;
   background-color: darkorange;
   background-size: cover;
   background-repeat: no-repeat;
@@ -16,12 +14,12 @@ body {
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* --- NAVBAR ÎNGHEȚAT SUS --- */
+/* --- NAVBAR CU BUTOANELE CENTRATE --- */
 nav {
   position: fixed;
   top: 0;
   left: 0;
-  margin-top: 50px;
+  margin-top: 30px;
   width: 100%;
   height: 70px;
   z-index: 1000;
@@ -29,128 +27,87 @@ nav {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
+  justify-content: center; /* Centrează cele 2 butoane pe mijlocul barei */
   padding: 0 30px;
 }
 
-nav ul {
-  width: 100%;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Logo în stânga, pastila .header în dreapta/centru */
-}
-
-/* --- LOGO --- */
+/* Logo-ul fixat în stânga pe Desktop */
 .logo {
+  position: absolute;
+  left: 30px;
   width: 150px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  transition: 0.2s;
-}
-
-.logo a {
-  text-decoration: none;
-  color: rgb(30, 39, 17);
   font-weight: bold;
   font-size: 1.1rem;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: rgb(30, 39, 17);
+  transition: 0.2s;
+  cursor: pointer;
 }
 
 .logo:hover {
   background-color: #9b4848;
   border: 3px solid orange;
-}
-
-.logo:hover {
   color: rgb(184, 206, 226);
 }
-.particular {
-   max-width: 150px;
-   height: 50px;
-   border: 4px solid transparent;
-}
-.particular:hover {
-   
-   border: 4px solid rgb(184, 206, 226);
-}
-/* --- PASTILA CU CELE 5 BUTOANE EGALE --- */
+
+/* Containerul celor 2 butoane pe mijloc */
 .header {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  width: 800px;
-  height: 50px;
-  gap: 0.5rem;
-  background-color: aliceblue;
-  padding: 4px;
-  margin: 0 auto; /* Centrează pastila în spațiul rămas */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: transparent;
 }
 
-.header li {
-  height: 100%;
-  width: 100%;
+/* STIL 100% IDENTIC PENTRU AMBELE BUTOANE (Hamburger + Login) */
+.menu-button,
+.particular {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 45px;
+  background-color: transparent;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  color: rgb(30, 39, 17);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
   transition: 0.2s;
 }
 
-.header a {
-   width: 150px;
-  height: 50px;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: rgb(30, 39, 17);
-  font-weight: 500;
+.menu-button:hover,
+.particular:hover {
+  border: 3px solid rgb(184, 206, 226);
+  background-color: transparent;
 }
 
-.header li:hover {
-    width: 150px;
-  height: 50px;
-  background-color: #af3d3d;
-}
-
-.header li:hover a {
-  color: rgb(184, 206, 226);
-}
-
-/* --- BUTON HAMBURGER & SIDEBAR (MOBIL) --- */
-.menu-button {
-  display: none;
-  list-style: none;
-}
-
-.menu-button a {
-  width: 150px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-}
-
+/* --- SIDEBAR (MENIUL VERTICAL PE TOT ECRANUL) --- */
 .sidebar {
   position: fixed;
   top: 0;
-  right: 0;
-  height: 120vh;
-  width: 250px;
-  z-index: 2000; /* Peste navbar */
-  background-color: rgba(255, 255, 255, 0.85);
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2000;
+  background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(15px);
-  box-shadow: -10px 0 20px rgba(0, 0, 0, 0.2);
-  display: none; /* Se deschide din JS cu showSidebar() */
+  display: none;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   padding-top: 20px;
+}
+
+.sidebar .close-button a {
+  justify-content: flex-start;
+  padding-left: 25px;
 }
 
 .sidebar li {
@@ -177,40 +134,41 @@ nav ul {
   color: rgb(184, 206, 226);
 }
 
-/* --- RESPONSIVE (ECRANE MICI) --- */
-/* @media (max-width: 800px) {
-  .header {
-    display: none; 
-  }
-  .menu-button {
-    display: block; 
-  }
-}
-
-@media (max-width: 400px) {
-  .sidebar {
-    width: 100%;
-  }
-} */
-/* Ascundem checkbox-ul */
 #login-toggle {
   display: none;
 }
 
-/* Facem <label> să arate identic cu <a> din .header */
-.header label {
-  width: 150px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: rgb(30, 39, 17);
-  font-weight: 500;
-  cursor: pointer;
+/* --- ADAPTARE PENTRU MOBIL PORTRAIT (Să nu se suprapună Logo-ul peste butoane) --- */
+@media (max-width: 700px) {
+  nav {
+    justify-content: space-between;
+    padding: 0 15px;
+  }
+  .logo {
+    position: static;
+    width: auto;
+  }
+  .header {
+    gap: 10px;
+  }
+  .menu-button,
+  .particular {
+    width: 75px;
+  }
 }
 
-.header li:hover label {
-  color: rgb(184, 206, 226);
+/* Centrare strictă pentru conținutul ambelor butoane */
+.menu-button,
+.particular,
+.menu-button a,
+.particular label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
 }
 
   /* ----------------------------------------------------------------------------
@@ -384,119 +342,109 @@ nav ul {
    ADAPTARE PENTRU TABLETĂ ȘI TELEFON (RESPONSIVE)
    ========================================================================== */
 
-/* 1. Când ecranul scade sub 950px, activăm butonul hamburger în loc de pastilă */
-@media (max-width: 950px) {
-  .header {
-    display: none;
-  }
-  .menu-button {
-    display: block;
-  }
-  .menu-button a {
-    width: auto;
-    justify-content: flex-end;
-  }
-}
-
-/* 2. Adaptare pentru Tabletă și Telefoane mari (sub 768px) */
-@media (max-width: 768px) {
+/* ==========================================================================
+   INTERFAȚA DE MOBIL (PORTRAIT & LANDSCAPE SUB 900px)
+   ========================================================================== */
+@media (max-width: 900px) {
   body {
-    padding-top: 250px;
+    padding-top: 260px;
   }
 
   nav {
-    display: block;
-    margin-top: 20px;
-    padding: 0 15px;
+    height: auto;
+    padding: 8px 12px;
+    margin-top: 10px;
   }
 
+  nav ul {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .logo {
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  /* Grila pe 2 rânduri x 3 coloane */
+  .header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 40px);
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    gap: 5px;
+  }
+
+  /* Rândul 1: Hamburger (1), Blog (2), Products (3) */
+  .menu-button {
+    display: flex !important;
+    order: 1;
+  }
+  .header li:nth-child(2) { order: 2; } /* Blog */
+  .header li:nth-child(3) { order: 3; } /* Products */
+
+  /* Rândul 2: Login (4), About (5), Forum (6) */
+  .header li.particular   { order: 4; max-width: 100%; } /* Login */
+  .header li:nth-child(4) { order: 5; } /* About */
+  .header li:nth-child(5) { order: 6; } /* Forum */
+
+  .header a,
+  .header label,
+  .header li:hover,
+  .menu-button a {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    font-size: 0.85rem;
+    padding: 0;
+  }
+
+  /* Adaptăm containerul și pozele ca să încapă pe ecranul telefonului */
   .container {
-    top: 130px;
-    height: 520px;
+    top: 165px;
+    height: 480px;
     padding: 20px;
   }
 
   #login-toggle:checked ~ .container {
-    top: 90px;
-    margin-top: -160px;
+    top: 145px;
+    margin-top: -120px;
   }
 
-  /* Micșorăm cardurile din carusel */
   .item1, .item2, .item3, .item4, .item5 {
-    width: 150px;
-    height: 110px;
-    margin-top: 50px;
-    animation-name: caruselAripiMobil; /* Folosim animația cu distanțe mai mici */
+    width: 130px;
+    height: 95px;
+    margin-top: 80px;
+    font-size: 0.8rem;
   }
 
-  /* Micșorăm și zona de drag-here de sus */
   .item6 {
-    width: 180px;
-    height: 130px;
-    margin-top: -310px;
+    width: 160px;
+    height: 120px;
+    margin-top: -270px;
+  }
+
+  /* Micșorăm distanța aripilor pe mobil ca să nu iasă pozele din ecran */
+  @keyframes caruselAripi {
+    0%, 15%   { transform: translate(-130px, 50px) rotate(-22deg) scale(0.75); z-index: 1; opacity: 0.85; }
+    20%, 35%  { transform: translate(-70px, 20px) rotate(-10deg) scale(0.9);  z-index: 2; opacity: 0.95; }
+    40%, 55%  { transform: translate(0px, -10px) rotate(0deg) scale(1.1);     z-index: 3; opacity: 1; }
+    60%, 75%  { transform: translate(70px, 20px) rotate(10deg) scale(0.9);    z-index: 2; opacity: 0.95; }
+    80%, 95%  { transform: translate(130px, 50px) rotate(22deg) scale(0.75);  z-index: 1; opacity: 0.85; }
+    100%      { transform: translate(-130px, 50px) rotate(-22deg) scale(0.75); z-index: 1; opacity: 0.85; }
   }
 }
 
-/* 3. Adaptare pentru Telefoane mici (sub 480px) */
-@media (max-width: 480px) {
-  .item1, .item2, .item3, .item4, .item5 {
-    width: 125px;
-    height: 92px;
-    margin-top: 60px;
-  }
-
-  .item6 {
-    width: 150px;
-    height: 110px;
-    margin-top: -280px;
-  }
-
+/* Ajustare suplimentară strict pentru telefon întors pe orizontală (Landscape) */
+@media (max-width: 900px) and (orientation: landscape) {
   .sidebar {
-    width: 100%; /* Meniul lateral ocupă tot ecranul pe telefoane înguste */
+    width: 220px;
+    padding-top: 10px;
+    overflow-y: auto;
   }
-}
-
-/* --- ANIMAȚIA CARUSELULUI PENTRU ECRANE MICI (distanțe strânse) --- */
-@keyframes caruselAripiMobil {
-  /* Poziția 1: Aripa stângă exterioară */
-  0%, 15% {
-    transform: translate(-125px, 55px) rotate(-22deg) scale(0.75);
-    z-index: 1;
-    opacity: 0.8;
-  }
-
-  /* Poziția 2: Aripa stângă interioară */
-  20%, 35% {
-    transform: translate(-65px, 20px) rotate(-10deg) scale(0.9);
-    z-index: 2;
-    opacity: 0.95;
-  }
-
-  /* Poziția 3: CENTRU / VÂRF (Pauză 3s) */
-  40%, 55% {
-    transform: translate(0px, -15px) rotate(0deg) scale(1.15);
-    z-index: 3;
-    opacity: 1;
-  }
-
-  /* Poziția 4: Aripa dreaptă interioară */
-  60%, 75% {
-    transform: translate(65px, 20px) rotate(10deg) scale(0.9);
-    z-index: 2;
-    opacity: 0.95;
-  }
-
-  /* Poziția 5: Aripa dreaptă exterioară */
-  80%, 95% {
-    transform: translate(125px, 55px) rotate(22deg) scale(0.75);
-    z-index: 1;
-    opacity: 0.8;
-  }
-
-  /* Trecere lină înapoi la Poziția 1 */
-  100% {
-    transform: translate(-125px, 55px) rotate(-22deg) scale(0.75);
-    z-index: 1;
-    opacity: 0.8;
+  .sidebar li {
+    height: 42px;
   }
 }
