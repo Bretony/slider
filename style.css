@@ -1,0 +1,501 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+   min-height: 200vh;
+  /* Împingem conținutul mai jos la pornire (ex: 400px), 
+     ca să aibă distanță pe care să urce la scroll până la 220px */
+  padding-top: 400px; /* Spațiu ca să nu intre conținutul sub navbar */
+  background-color: darkorange;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* --- NAVBAR ÎNGHEȚAT SUS --- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 50px;
+  width: 100%;
+  height: 70px;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+}
+
+nav ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Logo în stânga, pastila .header în dreapta/centru */
+}
+
+/* --- LOGO --- */
+.logo {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.logo a {
+  text-decoration: none;
+  color: rgb(30, 39, 17);
+  font-weight: bold;
+  font-size: 1.1rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo:hover {
+  background-color: #9b4848;
+  border: 3px solid orange;
+}
+
+.logo:hover {
+  color: rgb(184, 206, 226);
+}
+.particular {
+   max-width: 150px;
+   height: 50px;
+   border: 4px solid transparent;
+}
+.particular:hover {
+   
+   border: 4px solid rgb(184, 206, 226);
+}
+/* --- PASTILA CU CELE 5 BUTOANE EGALE --- */
+.header {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 800px;
+  height: 50px;
+  gap: 0.5rem;
+  background-color: aliceblue;
+  padding: 4px;
+  margin: 0 auto; /* Centrează pastila în spațiul rămas */
+}
+
+.header li {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+}
+
+.header a {
+   width: 150px;
+  height: 50px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(30, 39, 17);
+  font-weight: 500;
+}
+
+.header li:hover {
+    width: 150px;
+  height: 50px;
+  background-color: #af3d3d;
+}
+
+.header li:hover a {
+  color: rgb(184, 206, 226);
+}
+
+/* --- BUTON HAMBURGER & SIDEBAR (MOBIL) --- */
+.menu-button {
+  display: none;
+  list-style: none;
+}
+
+.menu-button a {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 120vh;
+  width: 250px;
+  z-index: 2000; /* Peste navbar */
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  box-shadow: -10px 0 20px rgba(0, 0, 0, 0.2);
+  display: none; /* Se deschide din JS cu showSidebar() */
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
+.sidebar li {
+  width: 100%;
+  height: 50px;
+  list-style: none;
+}
+
+.sidebar a {
+  width: 100%;
+  height: 100%;
+  padding: 0 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: rgb(30, 39, 17);
+}
+
+.sidebar li:hover {
+  background-color: #af3d3d;
+}
+
+.sidebar li:hover a {
+  color: rgb(184, 206, 226);
+}
+
+/* --- RESPONSIVE (ECRANE MICI) --- */
+/* @media (max-width: 800px) {
+  .header {
+    display: none; 
+  }
+  .menu-button {
+    display: block; 
+  }
+}
+
+@media (max-width: 400px) {
+  .sidebar {
+    width: 100%;
+  }
+} */
+/* Ascundem checkbox-ul */
+#login-toggle {
+  display: none;
+}
+
+/* Facem <label> să arate identic cu <a> din .header */
+.header label {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(30, 39, 17);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.header li:hover label {
+  color: rgb(184, 206, 226);
+}
+
+  /* ----------------------------------------------------------------------------
+  -------------------------------------------------------------------------------
+  Cream folosind display Flex, containerul principal in case se vor afla pozele */
+
+ /* .inghetat {
+    margin-top: 150px;
+    position: fixed;
+    
+    width: 100%;
+ } */
+/* Adăugăm transition pe .container pentru mișcare lină */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-margin-top: 100px; /* Distanța dorită față de marginea de sus */
+  position: sticky;
+  top: 220px; 
+  height: 650px;
+  padding: 50px;
+  background-color: dodgerblue;
+  border: 1px solid black;
+  overflow: hidden;
+  z-index: 10;
+  
+  /* Mișcarea lină de 0.6 secunde */
+  transition: top 0.6s ease-in-out, margin-top 0.6s ease-in-out;
+}
+
+/* Când dai click pe Login (#login-toggle este bifat):
+   Containerul urcă lin până la 120px (imediat sub navbar!) */
+#login-toggle:checked ~ .container {
+  top: 120px;
+  margin-top: -340px; /* Îl ridică lin chiar dacă nu ai dat încă scroll */
+}
+/* Stil comun pentru toate cele 5 poze */
+.item1, .item2, .item3, .item4, .item5 {
+  position: absolute; /* Se suprapun în centru, apoi le mutăm cu transform */
+  width: 220px;
+  height: 160px;
+  margin-top: 38px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  color: rgb(184, 206, 226);
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+  font-weight: bold;
+}
+.item1:hover, .item2:hover, .item3:hover, .item4:hover, .item5:hover {
+  z-index: 100 !important;
+  cursor: pointer;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Imaginile individuale și decalajul sincronizat pe 20s (câte 4s per pas) */
+.item1 {
+  background-image: url(poze/poza_1.png);
+  animation: caruselAripi 20s infinite ease-in-out;
+  animation-delay: 0s;
+}
+
+.item2 {
+  background-image: url(poze/poza_2.png);
+  animation: caruselAripi 20s infinite ease-in-out;
+  animation-delay: -4s; /* Pornește din poziția 2 */
+}
+
+.item3 {
+  background-image: url(poze/poza_3.png);
+  animation: caruselAripi 20s infinite ease-in-out;
+  animation-delay: -8s; /* Pornește direct din centru (vârf) în pauză de 3s */
+}
+
+.item4 {
+  background-image: url(poze/poza_4.png);
+  animation: caruselAripi 20s infinite ease-in-out;
+  animation-delay: -12s; /* Pornește din poziția 4 */
+}
+
+.item5 {
+  background-image: url(poze/poza_5.png);
+  animation: caruselAripi 20s infinite ease-in-out;
+  animation-delay: -16s; /* Pornește din poziția 5 */
+}
+
+.item6 {
+  position: absolute;
+  width: 250px;
+  height: 190px;
+  margin-top: -410px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(poze/drag-here.png);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  color: rgb(184, 206, 226);
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+}
+
+/* --- ANIMAȚIE SINCRONIZATĂ (1s mișcare + 3s pauză pe fiecare poziție) --- */
+@keyframes caruselAripi {
+  /* Poziția 1: Aripa stângă exterioară (Pauză 3s: 0% -> 15%) */
+  0%, 15% {
+    transform: translate(-360px, 80px) rotate(-25deg) scale(0.8);
+    z-index: 1;
+    opacity: 0.85;
+  }
+
+  /* Poziția 2: Aripa stângă interioară (Pauză 3s: 20% -> 35%) */
+  20%, 35% {
+    transform: translate(-190px, 30px) rotate(-12deg) scale(0.95);
+    z-index: 2;
+    opacity: 0.95;
+  }
+
+  /* Poziția 3: CENTRU / VÂRF (Pauză 3s: 40% -> 55%) */
+  40%, 55% {
+    transform: translate(0px, -20px) rotate(0deg) scale(1.15);
+    z-index: 3;
+    opacity: 1;
+  }
+
+  /* Poziția 4: Aripa dreaptă interioară (Pauză 3s: 60% -> 75%) */
+  60%, 75% {
+    transform: translate(190px, 30px) rotate(12deg) scale(0.95);
+    z-index: 2;
+    opacity: 0.95;
+  }
+
+  /* Poziția 5: Aripa dreaptă exterioară (Pauză 3s: 80% -> 95%) */
+  80%, 95% {
+    transform: translate(360px, 80px) rotate(25deg) scale(0.8);
+    z-index: 1;
+    opacity: 0.85;
+  }
+
+  /* Trecere lină înapoi la Poziția 1 (95% -> 100%) */
+  100% {
+    transform: translate(-360px, 80px) rotate(-25deg) scale(0.8);
+    z-index: 1;
+    opacity: 0.85;
+  }
+}
+
+
+/* =-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--==-=-
+=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=-=--=-=-=-=-=-=- */
+      /* Footer  */
+
+      .footer{
+
+        display: inline-block;
+        margin-top: 300px;
+        font-family: "Montserrat", sans-serif;
+        transform: translateX(80vw);
+        writing-mode: vertical-rl;   /* OBLIGATORIU: pune textul pe verticală */
+        text-orientation: upright;
+        
+      }
+
+      /* ==========================================================================
+   ADAPTARE PENTRU TABLETĂ ȘI TELEFON (RESPONSIVE)
+   ========================================================================== */
+
+/* 1. Când ecranul scade sub 950px, activăm butonul hamburger în loc de pastilă */
+@media (max-width: 950px) {
+  .header {
+    display: none;
+  }
+  .menu-button {
+    display: block;
+  }
+  .menu-button a {
+    width: auto;
+    justify-content: flex-end;
+  }
+}
+
+/* 2. Adaptare pentru Tabletă și Telefoane mari (sub 768px) */
+@media (max-width: 768px) {
+  body {
+    padding-top: 250px;
+  }
+
+  nav {
+    margin-top: 20px;
+    padding: 0 15px;
+  }
+
+  .container {
+    top: 130px;
+    height: 520px;
+    padding: 20px;
+  }
+
+  #login-toggle:checked ~ .container {
+    top: 90px;
+    margin-top: -160px;
+  }
+
+  /* Micșorăm cardurile din carusel */
+  .item1, .item2, .item3, .item4, .item5 {
+    width: 150px;
+    height: 110px;
+    margin-top: 50px;
+    animation-name: caruselAripiMobil; /* Folosim animația cu distanțe mai mici */
+  }
+
+  /* Micșorăm și zona de drag-here de sus */
+  .item6 {
+    width: 180px;
+    height: 130px;
+    margin-top: -310px;
+  }
+}
+
+/* 3. Adaptare pentru Telefoane mici (sub 480px) */
+@media (max-width: 480px) {
+  .item1, .item2, .item3, .item4, .item5 {
+    width: 125px;
+    height: 92px;
+    margin-top: 60px;
+  }
+
+  .item6 {
+    width: 150px;
+    height: 110px;
+    margin-top: -280px;
+  }
+
+  .sidebar {
+    width: 100%; /* Meniul lateral ocupă tot ecranul pe telefoane înguste */
+  }
+}
+
+/* --- ANIMAȚIA CARUSELULUI PENTRU ECRANE MICI (distanțe strânse) --- */
+@keyframes caruselAripiMobil {
+  /* Poziția 1: Aripa stângă exterioară */
+  0%, 15% {
+    transform: translate(-125px, 55px) rotate(-22deg) scale(0.75);
+    z-index: 1;
+    opacity: 0.8;
+  }
+
+  /* Poziția 2: Aripa stângă interioară */
+  20%, 35% {
+    transform: translate(-65px, 20px) rotate(-10deg) scale(0.9);
+    z-index: 2;
+    opacity: 0.95;
+  }
+
+  /* Poziția 3: CENTRU / VÂRF (Pauză 3s) */
+  40%, 55% {
+    transform: translate(0px, -15px) rotate(0deg) scale(1.15);
+    z-index: 3;
+    opacity: 1;
+  }
+
+  /* Poziția 4: Aripa dreaptă interioară */
+  60%, 75% {
+    transform: translate(65px, 20px) rotate(10deg) scale(0.9);
+    z-index: 2;
+    opacity: 0.95;
+  }
+
+  /* Poziția 5: Aripa dreaptă exterioară */
+  80%, 95% {
+    transform: translate(125px, 55px) rotate(22deg) scale(0.75);
+    z-index: 1;
+    opacity: 0.8;
+  }
+
+  /* Trecere lină înapoi la Poziția 1 */
+  100% {
+    transform: translate(-125px, 55px) rotate(-22deg) scale(0.75);
+    z-index: 1;
+    opacity: 0.8;
+  }
+}
